@@ -43,6 +43,40 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "DSharpPlus": {
+              "target": "Package",
+              "version": "[5.0.0-nightly-02450, )"
+            },
+            "DSharpPlus.Commands": {
+              "target": "Package",
+              "version": "[5.0.0-nightly-02450, )"
+            },
+            "DSharpPlus.CommandsNext": {
+              "target": "Package",
+              "version": "[5.0.0-nightly-02450, )"
+            },
+            "DSharpPlus.Interactivity": {
+              "target": "Package",
+              "version": "[5.0.0-nightly-02450, )"
+            },
+            "DSharpPlus.Lavalink": {
+              "target": "Package",
+              "version": "[5.0.0-nightly-02450, )"
+            },
+            "DSharpPlus.Rest": {
+              "target": "Package",
+              "version": "[5.0.0-nightly-02450, )"
+            },
+            "DSharpPlus.SlashCommands": {
+              "target": "Package",
+              "version": "[5.0.0-nightly-02450, )"
+            },
+            "DSharpPlus.VoiceNext": {
+              "target": "Package",
+              "version": "[5.0.0-nightly-02450, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
