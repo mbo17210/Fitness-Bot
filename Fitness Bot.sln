@@ -3,20 +3,55 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTrackerBot", "FitnessTrackerBot\FitnessTrackerBot.csproj", "{9594EF66-DEF1-4605-B1DC-5B4409D68F55}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FitnessTrackerBot", "FitnessTrackerBot", "{B2C8F6E4-54D7-4221-809E-E9CC4D0EF901}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTrackerBot", "FitnessTrackerBot\src\FitnessTrackerBot.csproj", "{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{074D28B4-7A07-4571-9AD4-6D404BD5C30A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessTrackerBotTests", "FitnessTrackerBot\test\FitnessTrackerBotTests\FitnessTrackerBotTests.csproj", "{E65EDFD2-8885-4245-810A-5B5A829C1D0B}"
 EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9594EF66-DEF1-4605-B1DC-5B4409D68F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9594EF66-DEF1-4605-B1DC-5B4409D68F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9594EF66-DEF1-4605-B1DC-5B4409D68F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9594EF66-DEF1-4605-B1DC-5B4409D68F55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Debug|x64.Build.0 = Debug|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Debug|x86.Build.0 = Debug|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Release|x64.ActiveCfg = Release|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Release|x64.Build.0 = Release|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Release|x86.ActiveCfg = Release|Any CPU
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073}.Release|x86.Build.0 = Release|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Debug|x64.Build.0 = Debug|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Debug|x86.Build.0 = Debug|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Release|x64.ActiveCfg = Release|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Release|x64.Build.0 = Release|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Release|x86.ActiveCfg = Release|Any CPU
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{00B3941D-E2F2-4A5A-8330-BF2C1AA5D073} = {B2C8F6E4-54D7-4221-809E-E9CC4D0EF901}
+		{074D28B4-7A07-4571-9AD4-6D404BD5C30A} = {B2C8F6E4-54D7-4221-809E-E9CC4D0EF901}
+		{E65EDFD2-8885-4245-810A-5B5A829C1D0B} = {074D28B4-7A07-4571-9AD4-6D404BD5C30A}
 	EndGlobalSection
 EndGlobal
