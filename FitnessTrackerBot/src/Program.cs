@@ -1,9 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using DSharpPlus;
 using DSharpPlus.Commands;
-using FitnessBot.Commands;
+using FitnessTrackerBot.Commands;
 
-namespace FitnessBot;
+namespace FitnessTrackerBot;
 
 class Program
 {
