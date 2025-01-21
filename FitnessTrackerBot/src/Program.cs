@@ -24,5 +24,8 @@ class Program
 
         builder.UseCommands(CommandSetup.Configure);
         DiscordClient client = builder.Build();
+
+        await client.ConnectAsync().ConfigureAwait(false);
+        await Task.Delay(-1).ConfigureAwait(false);
     }
 }
