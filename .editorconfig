@@ -411,3 +411,9 @@ dotnet_style_prefer_conditional_expression_over_return = false
 dotnet_style_prefer_conditional_expression_over_assignment = false
 
 csharp_style_implicit_object_creation_when_type_is_apparent = false
+
+# CA1859: Use concrete types when possible for improved performance
+dotnet_diagnostic.CA1859.severity = silent
+
+# CA1859: Use concrete types when possible for improved performance
+dotnet_diagnostic.CA1859.severity = none
