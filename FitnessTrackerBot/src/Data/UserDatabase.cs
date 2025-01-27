@@ -9,4 +9,13 @@ internal class UserDatabase : IUserDatabase
     {
         return _users[username]; 
     }
+
+    public void AddUser(User user)
+    {
+        string username = user.Id;
+        if(!_users.TryAdd(username, user))
+        {
+            throw new ArgumentException($"Username {username} already exists in database.");
+        }
+    }
 }
