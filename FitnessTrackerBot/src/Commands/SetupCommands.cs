@@ -15,10 +15,19 @@ internal class SetupCommands
     }
 
     [Command("register")]
-    public static async ValueTask RegisterUser(CommandContext context)
+    public async ValueTask RegisterUser(CommandContext context)
     {
         string userId = context.User.Id.ToString(CultureInfo.InvariantCulture);
         User newUser = new User(userId);
+		try
+		{
+            Database.AddUser(newUser);
+        }
+        catch (ArgumentException)
+		{
+            await context.RespondAsync($"User {userId} has already been registered!").ConfigureAwait(false);
+            return;
+        }
         await context.RespondAsync($"User {userId} has been registered!").ConfigureAwait(false);
     }
 } 
