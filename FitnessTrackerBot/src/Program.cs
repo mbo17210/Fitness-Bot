@@ -4,6 +4,11 @@ using DSharpPlus.Commands;
 using Microsoft.Extensions.Configuration;
 using FitnessTrackerBot.Commands;
 using System;
+using Microsoft.Extensions.DependencyInjection;
+using DSharpPlus.Extensions;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using DSharpPlus.Entities;
+using FitnessTrackerBot.Data.Schedule;
 
 namespace FitnessTrackerBot;
 
@@ -11,19 +16,27 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        ServiceCollection services = [];
+        
         IConfigurationRoot configurationBuilder = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
             .Build();
 
         string discordKey = configurationBuilder["Discord:Token"] ?? throw new Exception("Token isn't in config. Make an appsettings.json and add it in the appropriate location.");
 
-        DiscordClientBuilder builder = DiscordClientBuilder.CreateDefault(
-            discordKey,
-            DiscordIntents.AllUnprivileged
-        );
+        services.AddDiscordClient(discordKey, DiscordIntents.AllUnprivileged);
 
-        builder.UseCommands(CommandSetup.Configure);
-        DiscordClient client = builder.Build();
+        services.AddCommandsExtension(CommandSetup.Configure);
+
+        services.AddSingleton<IUserDatabase, UserDatabase>();
+
+
+        ServiceProvider serviceProvider = services.BuildServiceProvider();
+
+        DiscordClient client = serviceProvider.GetRequiredService<DiscordClient>();
+
+        // We can specify a status for our bot. Let's set it to "playing" and set the activity to "with fire".
+        DiscordActivity status = new("with fire", DiscordActivityType.Playing);
 
         await client.ConnectAsync().ConfigureAwait(false);
         await Task.Delay(-1).ConfigureAwait(false);
