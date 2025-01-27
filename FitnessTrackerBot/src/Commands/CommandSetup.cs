@@ -6,7 +6,7 @@ namespace FitnessTrackerBot.Commands;
 
 internal static class CommandSetup {
     private static readonly string[] ALLOWED_PREFIXES = ["&", "?"];
-    private static readonly Type[] COMMAND_CLASSES = [typeof(ScheduleCommands)];
+    private static readonly Type[] COMMAND_CLASSES = [typeof(ScheduleCommands), typeof(SetupCommands)];
     public static void Configure(IServiceProvider serviceProvider, CommandsExtension extension)
     {
         extension.AddCommands(COMMAND_CLASSES);
