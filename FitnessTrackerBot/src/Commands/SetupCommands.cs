@@ -25,9 +25,9 @@ internal class SetupCommands
         }
         catch (ArgumentException)
 		{
-            await context.RespondAsync($"User {userId} has already been registered!").ConfigureAwait(false);
+            await context.RespondAsync($"User {context.User.Username} has already been registered!").ConfigureAwait(false);
             return;
         }
-        await context.RespondAsync($"User {userId} has been registered!").ConfigureAwait(false);
+        await context.RespondAsync($"User {context.User.Username} has been registered!").ConfigureAwait(false);
     }
 } 
