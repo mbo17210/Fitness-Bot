@@ -21,27 +21,27 @@ internal class ScheduleCommands
     /// Sets a weekly schedule. Must provide an exercise for every day of the week: use "Rest" or something similar for rest days.
     /// </summary>
     /// <param name="context">Context of user who sent message</param>
-    /// <param name="Monday">Exercise name for Monday</param>
-    /// <param name="Tuesday">Exercise name for Tuesday</param>
-    /// <param name="Wednesday">Exercise name for Wednesday</param>
-    /// <param name="Thursday">Exercise name for Thursday</param>
-    /// <param name="Friday">Exercise name for Friday</param>
-    /// <param name="Saturday">Exercise name for Saturday</param>
-    /// <param name="Sunday">Exercise name for Sunday</param>
+    /// <param name="monday">Exercise name for Monday</param>
+    /// <param name="tuesday">Exercise name for Tuesday</param>
+    /// <param name="wednesday">Exercise name for Wednesday</param>
+    /// <param name="thursday">Exercise name for Thursday</param>
+    /// <param name="friday">Exercise name for Friday</param>
+    /// <param name="saturday">Exercise name for Saturday</param>
+    /// <param name="sunday">Exercise name for Sunday</param>
     /// <returns>N/A</returns>
     [Command("setWeekly")]
     public async ValueTask SetWeeklySchedule(
         CommandContext context,
-        string Monday,
-        string Tuesday,
-        string Wednesday,
-        string Thursday,
-        string Friday,
-        string Saturday,
-        string Sunday
+        string monday,
+        string tuesday,
+        string wednesday,
+        string thursday,
+        string friday,
+        string saturday,
+        string sunday
     )
 	{
-		List<string> workouts = [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday];
+		List<string> workouts = [sunday, monday, tuesday, wednesday, thursday, friday, saturday];
 		ISchedule schedule = new WeeklySchedule(workouts);
 		string userMessage = SetSchedule(context, schedule);
         await context.RespondAsync(userMessage).ConfigureAwait(false);
