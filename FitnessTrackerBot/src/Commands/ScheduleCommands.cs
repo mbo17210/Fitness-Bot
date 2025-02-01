@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Globalization;
 using DSharpPlus.Commands;
 using DSharpPlus.Commands.ArgumentModifiers;
@@ -16,6 +17,18 @@ internal class ScheduleCommands
         Database = database;
     }
 
+    /// <summary>
+    /// Sets a weekly schedule. Must provide an exercise for every day of the week: use "Rest" or something similar for rest days.
+    /// </summary>
+    /// <param name="context">Context of user who sent message</param>
+    /// <param name="Monday">Exercise name for Monday</param>
+    /// <param name="Tuesday">Exercise name for Tuesday</param>
+    /// <param name="Wednesday">Exercise name for Wednesday</param>
+    /// <param name="Thursday">Exercise name for Thursday</param>
+    /// <param name="Friday">Exercise name for Friday</param>
+    /// <param name="Saturday">Exercise name for Saturday</param>
+    /// <param name="Sunday">Exercise name for Sunday</param>
+    /// <returns>N/A</returns>
     [Command("setWeekly")]
     public async ValueTask SetWeeklySchedule(
         CommandContext context,
@@ -27,21 +40,41 @@ internal class ScheduleCommands
         string Saturday,
         string Sunday
     )
+	{
+		List<string> workouts = [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday];
+		ISchedule schedule = new WeeklySchedule(workouts);
+		string userMessage = SetSchedule(context, schedule);
+        await context.RespondAsync(userMessage).ConfigureAwait(false);
+	}
+
+	/// <summary>
+	/// Sets a daily schedule. Provide a space-deliniated list of exercises starting with todays exercise after the command. Make sure to include Rest days!
+	/// </summary>
+	/// <param name="context">Context of user who sent the message</param>
+	/// <param name="exercises">Exercises user is doing</param>
+	/// <returns></returns>
+	[Command("setDaily")]
+    public async ValueTask SetDailySchedule(CommandContext context, string exercises)
     {
-        List<string> workouts = [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday];
-        ISchedule schedule = new WeeklySchedule(workouts);
-        string userId = context.User.Id.ToString(CultureInfo.InvariantCulture);
-        try
-        {
-            Database.GetUser(userId).Schedule = schedule;
-        }
-        catch
-        {
-            await context.RespondAsync($"User {context.User.Username} is not yet registered! Please register the user before using any other Fitness Bot Commands!").ConfigureAwait(false);
-            return;
-        }
-        await context.RespondAsync($"User {context.User.Username} has updated their schedule!").ConfigureAwait(false);
+        List<string> workouts = exercises.Split(' ').ToList();
+        ISchedule schedule = new DailySchedule(workouts);
+        string userMessage = SetSchedule(context, schedule);
+        await context.RespondAsync(userMessage).ConfigureAwait(false);
     }
+
+	private string SetSchedule(CommandContext context, ISchedule schedule)
+	{
+		string userId = context.User.Id.ToString(CultureInfo.InvariantCulture);
+		try
+		{
+			Database.GetUser(userId).Schedule = schedule;
+		}
+		catch
+		{
+			return $"User {context.User.Username} is not yet registered! Please register the user before using any other Fitness Bot Commands!";
+		}
+		return $"User {context.User.Username} has updated their schedule!";
+	}
 
     [Command("get")]
     public async ValueTask GetNextDays(
