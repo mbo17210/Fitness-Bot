@@ -6,7 +6,8 @@ namespace FitnessTrackerBotTests;
 public class WeeklyScheduleTests
 {
     private static readonly List<string> _weeklyExercises = ["Rest", "Push", "Pull", "Legs", "Arms", "Chest", "Back"];
-    private static readonly WeeklySchedule Schedule = new WeeklySchedule(_weeklyExercises);
+    private static readonly ScheduleData ScheduleData = new WeeklyScheduleData(_weeklyExercises);
+    private static readonly ISchedule Schedule = ScheduleData.ToSchedule();
     public static readonly int DayOfWeek = (int) DateTime.Now.DayOfWeek;
 
     [TestMethod]

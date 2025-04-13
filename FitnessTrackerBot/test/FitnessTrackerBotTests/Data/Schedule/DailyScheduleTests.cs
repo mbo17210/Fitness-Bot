@@ -7,7 +7,8 @@ namespace FitnessTrackerBotTests;
 public class DailyScheduleTests
 {
     private static readonly List<string> Exercises = ["Rest", "Push", "Pull", "Legs", "Arms"];
-    private static readonly ISchedule Schedule = new DailySchedule(Exercises);
+    private static readonly ScheduleData ScheduleData = new DailyScheduleData(Exercises);
+    private static readonly ISchedule Schedule = ScheduleData.ToSchedule();
     
     [TestMethod]
     public void GetTodaysExercise_ReturnsProperExercise()
