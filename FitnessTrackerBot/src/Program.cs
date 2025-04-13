@@ -51,6 +51,7 @@ class Program
         };
         try
         {
+            serviceProvider.GetRequiredService<IUserDatabase>().LoadUsers();
             await client.ConnectAsync().ConfigureAwait(false);
             // Wait indefinitely until a cancellation is requested
             await Task.Delay(Timeout.Infinite, cts.Token).ConfigureAwait(false);
@@ -61,6 +62,7 @@ class Program
         }
         finally
         {
+            serviceProvider.GetRequiredService<IUserDatabase>().SaveUsers();
             await client.DisconnectAsync().ConfigureAwait(false);
             client.Dispose();
             Console.WriteLine("Bot has been shutdown cleanly.");
