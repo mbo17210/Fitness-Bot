@@ -22,20 +22,20 @@ internal class UserDatabase : IUserDatabase
 
     public void SaveUsers()
     {
-        string projectDir = Environment.CurrentDirectory;
+        string projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
         string userSaveFile = "UserInfo/Users";
         foreach(KeyValuePair<string, User> user in _users)
         {
-            string filepath = Path.Combine(projectDir, userSaveFile, user.Key + ".json");
+            string filepath = Path.Combine(projectRoot, userSaveFile, user.Key + ".json");
             File.WriteAllText(filepath, JsonSerializer.Serialize(user.Value));
         }
     }
 
     public void LoadUsers()
     {
-        string projectDir = Environment.CurrentDirectory;
+        string projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
         string userSaveFile = "UserInfo/Users";
-        string folderpath = Path.Combine(projectDir, userSaveFile);
+        string folderpath = Path.Combine(projectRoot, userSaveFile);
         Console.WriteLine(folderpath);
         foreach (string file in Directory.EnumerateFiles(folderpath, "*.json"))
         {
