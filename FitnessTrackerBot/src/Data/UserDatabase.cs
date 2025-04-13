@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace FitnessTrackerBot.Data.Schedule;
 
 
@@ -24,8 +26,26 @@ internal class UserDatabase : IUserDatabase
         string userSaveFile = "UserInfo/Users";
         foreach(KeyValuePair<string, User> user in _users)
         {
-            string filepath = Path.Combine(projectDir, userSaveFile, user.Key);
-            
+            string filepath = Path.Combine(projectDir, userSaveFile, user.Key + ".json");
+            File.WriteAllText(filepath, JsonSerializer.Serialize(user.Value));
+        }
+    }
+
+    public void LoadUsers()
+    {
+        string projectDir = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.FullName;
+        string userSaveFile = "UserInfo/Users";
+        string folderpath = Path.Combine(projectDir, userSaveFile);
+        foreach (string file in Directory.EnumerateFiles(folderpath, ".json"))
+        {
+            string userJson = File.ReadAllText(file);
+            User? user = JsonSerializer.Deserialize<User>(userJson);
+            if (user == null)
+            {
+                Console.WriteLine($"Error deserializing user at path {file}.");
+                continue;
+            }
+            _users.Add(user.Id, user);
         }
     }
 }
