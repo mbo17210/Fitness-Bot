@@ -22,7 +22,7 @@ internal class UserDatabase : IUserDatabase
 
     public void SaveUsers()
     {
-        string projectDir = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.FullName;
+        string projectDir = Environment.CurrentDirectory;
         string userSaveFile = "UserInfo/Users";
         foreach(KeyValuePair<string, User> user in _users)
         {
@@ -33,10 +33,11 @@ internal class UserDatabase : IUserDatabase
 
     public void LoadUsers()
     {
-        string projectDir = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.FullName;
+        string projectDir = Environment.CurrentDirectory;
         string userSaveFile = "UserInfo/Users";
         string folderpath = Path.Combine(projectDir, userSaveFile);
-        foreach (string file in Directory.EnumerateFiles(folderpath, ".json"))
+        Console.WriteLine(folderpath);
+        foreach (string file in Directory.EnumerateFiles(folderpath, "*.json"))
         {
             string userJson = File.ReadAllText(file);
             User? user = JsonSerializer.Deserialize<User>(userJson);

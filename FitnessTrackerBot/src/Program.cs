@@ -56,9 +56,9 @@ class Program
             // Wait indefinitely until a cancellation is requested
             await Task.Delay(Timeout.Infinite, cts.Token).ConfigureAwait(false);
         }
-        catch
+        catch (Exception e)
         {
-
+            Console.WriteLine($"Error occured! {e}");
         }
         finally
         {
