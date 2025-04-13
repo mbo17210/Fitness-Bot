@@ -42,7 +42,7 @@ internal class ScheduleCommands
     )
 	{
 		List<string> workouts = [sunday, monday, tuesday, wednesday, thursday, friday, saturday];
-		ISchedule schedule = new WeeklySchedule(workouts);
+		ScheduleData schedule = new WeeklyScheduleData(workouts);
 		string userMessage = SetSchedule(context, schedule);
         await context.RespondAsync(userMessage).ConfigureAwait(false);
 	}
@@ -57,12 +57,12 @@ internal class ScheduleCommands
     public async ValueTask SetDailySchedule(CommandContext context, string exercises)
     {
         List<string> workouts = exercises.Split(' ').ToList();
-        ISchedule schedule = new DailySchedule(workouts);
+        ScheduleData schedule = new DailyScheduleData(workouts);
         string userMessage = SetSchedule(context, schedule);
         await context.RespondAsync(userMessage).ConfigureAwait(false);
     }
 
-	private string SetSchedule(CommandContext context, ISchedule schedule)
+	private string SetSchedule(CommandContext context, ScheduleData schedule)
 	{
 		string userId = context.User.Id.ToString(CultureInfo.InvariantCulture);
 		try
@@ -98,7 +98,7 @@ internal class ScheduleCommands
             await context.RespondAsync($"User {context.User.Username} has not yet set a schedule. Please set a schedule to start using the other schedule commands!").ConfigureAwait(false);
             return;
         }
-        List<string> nextExercises = currentUser.Schedule.GetNextExercises(numberOfDays);
+        List<string> nextExercises = currentUser.Schedule.ToSchedule().GetNextExercises(numberOfDays);
         string nextExercisesString = string.Join(", ", nextExercises);
         await context.RespondAsync($"The next exercises starting from today are {nextExercisesString}").ConfigureAwait(false);
     }

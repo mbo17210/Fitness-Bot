@@ -1,22 +1,15 @@
 namespace FitnessTrackerBot.Data.Schedule;
 
-internal class DailySchedule : ISchedule
+public class DailySchedule : ISchedule
 {
     private List<string> _exercises;
     private DateTime _startDay;
     private int _numberOfDaysInSchedule;
-    public DailySchedule(List<string> exercises)
+    public DailySchedule(DailyScheduleData data)
     {
-        _exercises = exercises;
-        _startDay = DateTime.Now;
-        _numberOfDaysInSchedule = exercises.Count;
-    }
-
-    public DailySchedule(List<string> exercises, int startExercise)
-    {
-        _exercises = exercises;
-        _startDay = DateTime.Now.AddDays(startExercise * -1);
-        _numberOfDaysInSchedule = exercises.Count;
+        _exercises = data.Exercises;
+        _startDay = data.StartDay;
+        _numberOfDaysInSchedule = data.Exercises.Count;
     }
 
 	public List<string> GetNextExercises(int numberOfDays)

@@ -17,4 +17,15 @@ internal class UserDatabase : IUserDatabase
             throw new ArgumentException($"User already exists in database.");
         }
     }
+
+    public void SaveUsers()
+    {
+        string projectDir = Directory.GetParent(Environment.CurrentDirectory)!.Parent!.Parent!.FullName;
+        string userSaveFile = "UserInfo/Users";
+        foreach(KeyValuePair<string, User> user in _users)
+        {
+            string filepath = Path.Combine(projectDir, userSaveFile, user.Key);
+            
+        }
+    }
 }

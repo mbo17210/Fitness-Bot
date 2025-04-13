@@ -1,8 +1,8 @@
 namespace FitnessTrackerBot.Data.Schedule;
 
-internal class WeeklySchedule : DailySchedule
+public class WeeklyScheduleData : DailyScheduleData
 {
-    public WeeklySchedule(List<string> exercises) : base(exercises, (int)DateTime.Now.DayOfWeek)
+    public WeeklyScheduleData(List<string> exercises) : base(exercises, (int)DateTime.Now.DayOfWeek)
     {
         if(exercises.Count != 7)
         {
